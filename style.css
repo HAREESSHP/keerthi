@@ -73,6 +73,38 @@ body {
     text-decoration: underline;
 }
 
+/* Hamburger Menu */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    background: none;
+    border: none;
+    cursor: pointer;
+    gap: 5px;
+    padding: 5px;
+}
+
+.hamburger span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(10px, 10px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+}
+
 /* Hero Section */
 .hero {
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
@@ -298,8 +330,35 @@ section {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    .hamburger {
+        display: flex;
+    }
+
     .nav-menu {
-        gap: 1rem;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+        flex-direction: column;
+        gap: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+    }
+
+    .nav-menu.active {
+        max-height: 400px;
+        padding: 1rem 0;
+    }
+
+    .nav-menu li {
+        padding: 0.75rem 1.5rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-menu li:last-child {
+        border-bottom: none;
     }
 
     .hero-title {
@@ -332,13 +391,17 @@ section {
 
 @media (max-width: 480px) {
     .navbar .container {
-        flex-direction: column;
-        gap: 1rem;
+        flex-direction: row;
+        justify-content: space-between;
     }
 
-    .nav-menu {
-        flex-direction: column;
-        gap: 0.5rem;
+    .nav-brand {
+        font-size: 1.2rem;
+    }
+
+    .hero {
+        padding: 80px 20px;
+        min-height: 400px;
     }
 
     .hero-title {
@@ -349,11 +412,43 @@ section {
         font-size: 1rem;
     }
 
+    .hero-description {
+        font-size: 0.95rem;
+    }
+
     section {
         padding: 50px 20px;
     }
 
     .section-title {
         font-size: 1.5rem;
+    }
+
+    .skill-card,
+    .interest-item {
+        padding: 1.5rem;
+    }
+
+    .about-text {
+        font-size: 1rem;
+        text-align: left;
+    }
+
+    .contact-methods {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+    }
+
+    .contact-link {
+        width: 100%;
+        padding: 1.2rem 1.5rem;
+        min-height: 60px;
+        justify-content: center;
+    }
+
+    .btn {
+        padding: 10px 24px;
+        font-size: 0.95rem;
     }
 }
